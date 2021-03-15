@@ -3,12 +3,16 @@ import { OrbitControls, Billboard, Html, Text } from "@react-three/drei";
 import { ARCanvas, Interactive } from "@react-three/xr";
 
 export default function Scene() {
+
+  // état du bouton
   const [hover, setHover] = useState(false);
 
+  // afficher un curseur de pointeur si hover
   useEffect(() => {
     document.body.style.cursor = hover ? "pointer" : "auto";
   }, [hover]);
 
+  // toute la scène est construite à partir d'éléments déclaratifs et représentatifs !
   return (
     <>
       <ARCanvas style={{ height: "100vh" }}>

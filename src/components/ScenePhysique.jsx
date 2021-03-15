@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState,  useEffect } from "react";
 import '../Physique.css';
 import { Canvas } from "react-three-fiber";
 import { Physics, useBox, usePlane } from "@react-three/cannon";
 import { OrbitControls, Html } from "@react-three/drei";
 
+// composant de plan physique
 function Plane(props) {
+  // simple hook de cannon.js permettant d'ajouter des propriétés de collision au plan
   const [ref] = usePlane(() => ({  ...props }));
   return (
     <mesh ref={ref} receiveShadow>
@@ -14,11 +16,17 @@ function Plane(props) {
   );
 }
 
+// composant de cube physique
 function Box(props) {
+  // la librairie cannon.js permet d'ajouter des propriétés physiques aux éléments
   const [ref] = useBox(() => ({ mass: 1000, args: [2,2,2],...props }));
+
+  // simple état du texte contenu dans les boites
   const [texte, setTexte] = useState('')
 
+  // faire apparatire le texte apres 3 secondes
   useEffect(() => void setTimeout(() => setTexte('imaginez des éléments UI qui bougent'), 3000), []);
+
   return (
     <mesh ref={ref} castShadow receiveShadow>
       <Html>
@@ -31,8 +39,13 @@ function Box(props) {
   );
 }
 
+// construction déclarative de la scène. On a simplement à exprimer ce qu'on veut voir
 export default function ScenePhysique() {
+
+  // états de la scène
   const [showPlane, set] = useState(true);
+
+  // désactiver un plan apres 5 secondes
   useEffect(() => void setTimeout(() => set(false), 5000), []);
 
   return (
