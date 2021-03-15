@@ -32,7 +32,6 @@ export default function Scene() {
             lineHeight={1}
             letterSpacing={0.02}
             textAlign={"left"}
-            font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
             anchorX="center"
             anchorY="middle"
           >
@@ -71,7 +70,6 @@ export default function Scene() {
             lineHeight={1}
             letterSpacing={0.02}
             textAlign={"left"}
-            font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
             anchorX="center"
             anchorY="middle"
           >
@@ -110,8 +108,8 @@ export default function Scene() {
             lockY={false}
             lockZ={false}
             onPointerUp={() => window.appHistory.push("/physique")}
-            onPointerOver={()=>setHover(true)}
-            onPointerOut={()=>setHover(false)}
+            onPointerOver={() => setHover(true)}
+            onPointerOut={() => setHover(false)}
           >
             <Text
               color={"#000000"}
@@ -120,7 +118,6 @@ export default function Scene() {
               lineHeight={1}
               letterSpacing={0.02}
               textAlign={"left"}
-              font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
               anchorX="center"
               anchorY="middle"
             >
