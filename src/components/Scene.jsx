@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { OrbitControls, Billboard, Html, Text } from "@react-three/drei";
-import { ARCanvas } from "@react-three/xr";
+import { ARCanvas, Interactive } from "@react-three/xr";
 
 export default function Scene() {
-
-  const [hover,setHover] = useState(false);
+  const [hover, setHover] = useState(false);
 
   useEffect(() => {
-    document.body.style.cursor = hover ? 'pointer' : 'auto'
-  }, [hover])
-  
+    document.body.style.cursor = hover ? "pointer" : "auto";
+  }, [hover]);
+
   return (
     <>
       <ARCanvas style={{ height: "100vh" }}>
@@ -97,32 +96,38 @@ export default function Scene() {
             </p>
           </Html>
         </Billboard>
-        <Billboard
-          position={[4, 2, -4]}
-          args={hover ? [4,3] : [3, 2]}
-          material-color="yellow"
-          follow={true}
-          lockX={false}
-          lockY={false}
-          lockZ={false}
-          onPointerUp={() => window.appHistory.push("/physique")}
-          onPointerOver={()=>setHover(true)}
-          onPointerOut={()=>setHover(false)}
+        <Interactive
+          onSelect={() => window.appHistory.push("/physique")}
+          onHover={() => setHover(true)}
+          onBlur={() => setHover(false)}
         >
-           <Text
-            color={"#000000"}
-            fontSize={0.3}
-            maxWidth={2}
-            lineHeight={1}
-            letterSpacing={0.02}
-            textAlign={"left"}
-            font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
-            anchorX="center"
-            anchorY="middle"
+          <Billboard
+            position={[4, 2, -4]}
+            args={hover ? [4, 3] : [3, 2]}
+            material-color="yellow"
+            follow={true}
+            lockX={false}
+            lockY={false}
+            lockZ={false}
+            onPointerUp={() => window.appHistory.push("/physique")}
+            onPointerOver={()=>setHover(true)}
+            onPointerOut={()=>setHover(false)}
           >
-           Cliquez-moi !!
-          </Text>
-        </Billboard>
+            <Text
+              color={"#000000"}
+              fontSize={0.3}
+              maxWidth={2}
+              lineHeight={1}
+              letterSpacing={0.02}
+              textAlign={"left"}
+              font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+              anchorX="center"
+              anchorY="middle"
+            >
+              Cliquez-moi !!
+            </Text>
+          </Billboard>
+        </Interactive>
       </ARCanvas>
     </>
   );
