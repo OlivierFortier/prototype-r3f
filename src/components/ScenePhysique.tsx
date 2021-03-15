@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import '../Physique.css';
 import { Canvas } from "react-three-fiber";
 import { Physics, useBox, usePlane } from "@react-three/cannon";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Html } from "@react-three/drei";
 
 function Plane(props) {
   const [ref] = usePlane(() => ({  ...props }));
@@ -16,8 +16,15 @@ function Plane(props) {
 
 function Box(props) {
   const [ref] = useBox(() => ({ mass: 1000, args: [2,2,2],...props }));
+  const [texte, setTexte] = useState('')
+
+  useEffect(() => void setTimeout(() => setTexte('imaginez des éléments UI qui bougent'), 3000), []);
   return (
     <mesh ref={ref} castShadow receiveShadow>
+      <Html>
+        <h1>yeeehaah</h1>
+        <p>{texte}</p>
+      </Html>
       <boxBufferGeometry />
       <meshStandardMaterial/>
     </mesh>
@@ -29,7 +36,7 @@ export default function ScenePhysique() {
   useEffect(() => void setTimeout(() => set(false), 5000), []);
 
   return (
-    <Canvas style={{ height: "100vh" }} className="main" shadowMap camera={{ position: [0, 0, 20], }}>
+    <Canvas style={{ height: "100vh" }} className="main" shadowMap camera={{ position: [0, 0, 10], }}>
       <OrbitControls/>
       <ambientLight intensity={0.5} />
       <spotLight
