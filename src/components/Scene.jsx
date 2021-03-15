@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Canvas, useFrame } from "react-three-fiber";
 import { OrbitControls, Billboard, Html } from "@react-three/drei";
-import {Link} from 'react-router-dom'
 
 export default function Scene() {
   return (

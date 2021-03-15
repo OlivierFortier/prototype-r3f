@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@react-three/cannon": "^0.6.1",
     "@react-three/drei": "^3.11.0",
     "modern-normalize": "^1.0.0",
     "react": "^17.0.0",
