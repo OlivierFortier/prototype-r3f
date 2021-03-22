@@ -7,8 +7,9 @@ import { OrbitControls, Html } from "@react-three/drei";
 // composant de plan physique
 function Plane(props) {
 
-  // simple hook de cannon.js permettant d'ajouter des propriétés de collision au plan
+  // simple hook de cannon.js permettant d'ajouter des propriétés de collision au plane
   const [ref] : Array<MeshProps> = usePlane(() => ({  ...props }));
+
   return (
     <mesh ref={ref} receiveShadow>
       <planeBufferGeometry args={[1000, 1000]} />
@@ -32,9 +33,8 @@ function Box({position, ...restProps} : {position?: [number, number , number]; r
   return (
     <mesh ref={ref} castShadow receiveShadow >
       <Html>
-        {
-          // @ts-ignore
-        }<h1>yeeehaah</h1><p>{texte}</p>
+        <h1>yeeehaah</h1>
+        <p>{texte}</p>
       </Html>
       <boxBufferGeometry />
       <meshStandardMaterial/>
@@ -62,9 +62,8 @@ export default function ScenePhysique() {
         penumbra={1}
         castShadow
       />
-      {
-        // @ts-ignore
-      }<Physics gravity={[0,0, -10]}>
+      
+      <Physics gravity={[0,0, -10]}>
         <Plane position={[0, 0, -10]} />
         {showPlane && <Plane position={[0, 0, 0]} />}
         <Box position={[1, 0, 1]} />
