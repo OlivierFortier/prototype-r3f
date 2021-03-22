@@ -15,7 +15,8 @@ export default function Scene() {
   // toute la scène est construite à partir d'éléments déclaratifs et représentatifs !
   return (
     <>
-      <ARCanvas style={{ height: "100vh" }}>
+    {// @ts-ignore
+    }<ARCanvas style={{ height: "100vh" }}>
         <OrbitControls />
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
@@ -98,7 +99,8 @@ export default function Scene() {
             </p>
           </Html>
         </Billboard>
-        <Interactive
+        <Interactive 
+        // @ts-ignore
           onSelect={() => window.appHistory.push("/physique")}
           onHover={() => setHover(true)}
           onBlur={() => setHover(false)}
@@ -111,6 +113,7 @@ export default function Scene() {
             lockX={false}
             lockY={false}
             lockZ={false}
+            //@ts-ignore
             onPointerUp={() => window.appHistory.push("/physique")}
             onPointerOver={() => setHover(true)}
             onPointerOut={() => setHover(false)}

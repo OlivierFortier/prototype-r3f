@@ -1,13 +1,14 @@
 import React, { useState,  useEffect } from "react";
 import '../Physique.css';
-import { Canvas } from "react-three-fiber";
+import { Canvas, MeshProps } from "react-three-fiber";
 import { Physics, useBox, usePlane } from "@react-three/cannon";
 import { OrbitControls, Html } from "@react-three/drei";
 
 // composant de plan physique
 function Plane(props) {
+
   // simple hook de cannon.js permettant d'ajouter des propriétés de collision au plan
-  const [ref] = usePlane(() => ({  ...props }));
+  const [ref] : Array<MeshProps> = usePlane(() => ({  ...props }));
   return (
     <mesh ref={ref} receiveShadow>
       <planeBufferGeometry args={[1000, 1000]} />
@@ -17,9 +18,10 @@ function Plane(props) {
 }
 
 // composant de cube physique
-function Box(props) {
+function Box({position, ...restProps} : {position?: [number, number , number]; restProps?: any}) {
+  
   // la librairie cannon.js permet d'ajouter des propriétés physiques aux éléments
-  const [ref] = useBox(() => ({ mass: 1000, args: [2,2,2],...props }));
+  const [ref] = useBox(() => ({ mass: 1000, args: [2,2,2], position, ...restProps }));
 
   // simple état du texte contenu dans les boites
   const [texte, setTexte] = useState('')
@@ -28,10 +30,11 @@ function Box(props) {
   useEffect(() => void setTimeout(() => setTexte('imaginez des éléments UI qui bougent'), 3000), []);
 
   return (
-    <mesh ref={ref} castShadow receiveShadow>
+    <mesh ref={ref} castShadow receiveShadow >
       <Html>
-        <h1>yeeehaah</h1>
-        <p>{texte}</p>
+        {
+          // @ts-ignore
+        }<h1>yeeehaah</h1><p>{texte}</p>
       </Html>
       <boxBufferGeometry />
       <meshStandardMaterial/>
@@ -43,7 +46,7 @@ function Box(props) {
 export default function ScenePhysique() {
 
   // états de la scène
-  const [showPlane, set] = useState(true);
+  const [showPlane, set] = useState<boolean>(true);
 
   // désactiver un plan apres 5 secondes
   useEffect(() => void setTimeout(() => set(false), 5000), []);
@@ -59,7 +62,9 @@ export default function ScenePhysique() {
         penumbra={1}
         castShadow
       />
-      <Physics gravity={[0,0, -10]}>
+      {
+        // @ts-ignore
+      }<Physics gravity={[0,0, -10]}>
         <Plane position={[0, 0, -10]} />
         {showPlane && <Plane position={[0, 0, 0]} />}
         <Box position={[1, 0, 1]} />
