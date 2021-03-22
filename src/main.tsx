@@ -14,7 +14,6 @@ ReactDOM.render(
     <Router history={customHistory}>
       <Route
         component={({ history }) => {
-          // @ts-ignore
           window.appHistory = history;
           return <App />;
         }}
