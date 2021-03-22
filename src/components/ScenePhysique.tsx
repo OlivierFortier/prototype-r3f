@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState,  useEffect } from "react";
 import '../Physique.css';
 import { Canvas, MeshProps } from "react-three-fiber";

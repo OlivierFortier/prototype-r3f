@@ -1,9 +1,9 @@
+//@ts-nocheck
 import React, { useEffect, useState } from "react";
 import { OrbitControls, Billboard, Html, Text } from "@react-three/drei";
 import { ARCanvas, Interactive } from "@react-three/xr";
 
 export default function Scene() {
-
   // état du bouton
   const [hover, setHover] = useState(false);
 
@@ -15,8 +15,7 @@ export default function Scene() {
   // toute la scène est construite à partir d'éléments déclaratifs et représentatifs !
   return (
     <>
-    {// @ts-ignore
-    }<ARCanvas style={{ height: "100vh" }}>
+      <ARCanvas style={{ height: "100vh" }}>
         <OrbitControls />
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
@@ -99,8 +98,8 @@ export default function Scene() {
             </p>
           </Html>
         </Billboard>
-        <Interactive 
-        // @ts-ignore
+        <Interactive
+          // @ts-ignore
           onSelect={() => window.appHistory.push("/physique")}
           onHover={() => setHover(true)}
           onBlur={() => setHover(false)}
