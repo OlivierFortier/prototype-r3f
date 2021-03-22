@@ -7,16 +7,14 @@ import ScenePhysique from "./components/ScenePhysique";
 function App() {
   return (
     <div className="App">
-      
-        <Switch>
-          <Route path="/" exact>
-            <Scene />
-          </Route>
-          <Route path="/physique">
-            <ScenePhysique />
-          </Route>
-        </Switch>
-     
+      <Switch>
+        <Route path="/" exact>
+          <Scene />
+        </Route>
+        <Route path="/physique">
+          <ScenePhysique />
+        </Route>
+      </Switch>
     </div>
   );
 }
