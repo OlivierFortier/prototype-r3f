@@ -15,7 +15,7 @@ export default function Scene() {
   // toute la scène est construite à partir d'éléments déclaratifs et représentatifs !
   return (
     <>
-      <ARCanvas style={{ height: "100vh" }}>
+      <ARCanvas style={{ height: "100vh" }} dpr={[1,2]}>
         <OrbitControls />
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
@@ -43,21 +43,29 @@ export default function Scene() {
           </Text>
         </Billboard>
 
-        <Billboard
-          position={[-4, 2, -4]}
-          args={[3, 2]}
-          material-color="orange"
-          follow={true}
-          lockX={false}
-          lockY={false}
-          lockZ={false}
-        >
-          <Html prepend center fullscreen distanceFactor={10} transform>
-            <p>
-              prototype d'interface <br /> nouveau genre
-            </p>
+        <mesh position={[-4, 2, -4]} rotation={[0.2, 0.5, 0]}>
+          <boxGeometry args={[3, 3, 3]} />
+          <meshStandardMaterial color="red" />
+          <Html distanceFactor={1.1} position={[0, 0, 0.5]} transform>
+            <div className="formulaire">
+              <h2>Connexion</h2>
+              <form>
+                <span>
+                  <label htmlFor="nom">Nom</label>
+                  <input id="nom" type="text" />
+                </span>
+                <span>
+                  <label htmlFor="pass">Mdp</label>
+                  <input id="pass" type="text" />
+                </span>
+                <button onClick={(e) => e.preventDefault()}>
+                  Se connecter
+                </button>
+              </form>
+            </div>
           </Html>
-        </Billboard>
+        </mesh>
+
         <Billboard
           position={[0, 0, -4]}
           args={[3, 2]}

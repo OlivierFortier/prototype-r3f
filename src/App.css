@@ -19,3 +19,21 @@
 .btn:hover {
   transform: scale(1.1);
 }
+
+.formulaire {
+  font-size: 5rem;
+}
+
+.formulaire > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formulaire > form > span {
+  margin : 2rem
+}
+
+.formulaire > form > button {
+  width: 80%;
+  margin: 0 auto;
+}
